@@ -235,3 +235,34 @@ def plot_trajectory(rollout_data, env, fig_index, save_figure=True, plot=True) -
     plt.scatter(x, y, c=range(1, len(rollout_data.observations) + 1), s=3)
     figname = "trajectory_" + str(fig_index) + ".pdf"
     final_show(save_figure, plot, figname, x_label, y_label, "Trajectory", "/plots/")
+    
+   
+def plot_policy_X_Y(policy, env, plot=True, save_figure=True) -> None:
+
+    if env.observation_space.shape[0] <= 2:
+        raise (ValueError("Observation space dimension {}, should be > 2".format(env.observation_space.shape[0])))
+    H = 385
+    W = 278
+    portrait = np.zeros((H, W))
+    obs = env.reset()
+    actions, _states = policy.predict(obs)
+    obsvT, rewards, dones, info = env.step(actions)
+    tmp = []
+    tmp.append(obsvT)
+    obsv = np.asarray(tmp)
+    for y in range(H):
+        for x in range(W):      
+            env.lander.position.y = y 
+            env.lander.position.x = x
+            actions, _states = policy.predict(obsv[0])
+            obsvT, rewards, dones, info = env.step(actions)
+            tmp = []
+            tmp.append(obsvT)
+            obsv = np.asarray(tmp)
+            portrait[H - (1 + int(y)), x] = actions[1]
+
+    plt.figure(figsize=(int(H/30), int(W/30)))
+    plt.imshow(portrait, cmap="inferno", extent=[0, W, 0, H], aspect="auto")
+    plt.colorbar(label="throttle")
+
+    final_show(save_figure, plot, "throttle.pdf", "Position X", "Position Y", "throttle/x/y", "/plots/")
