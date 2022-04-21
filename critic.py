@@ -38,12 +38,10 @@ def plot_nd_critic(model, env, plot=True, figname="vfunction.pdf", foldername="/
             for _ in range(2, len(state_min)):
                 z = random.random() - 0.5
                 obs = np.append(obs, z)
-                with th.no_grad():
-                    print("obs :", obs)
-                    print("obs_as_Tensor :", obs_as_tensor(obs, model.device))
-                    action = model.policy.forward(obs=obs_as_tensor(obs, model.device))
-                    value = model.predict_values(obs_as_tensor(obs, model.device), action)
-                portrait[definition - (1 + index_y), index_x] = value.item()
+            with th.no_grad():
+                action = model.policy.forward(obs=obs_as_tensor(obs, model.device))
+                value = model.predict_values(obs_as_tensor(obs, model.device), action)
+            portrait[definition - (1 + index_y), index_x] = value.item()
 
     plt.figure(figsize=(10, 10))
     plt.imshow(portrait, cmap="inferno", extent=[state_min[0], state_max[0], state_min[1], state_max[1]], aspect="auto")
