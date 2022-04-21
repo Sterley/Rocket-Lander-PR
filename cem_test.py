@@ -42,7 +42,7 @@ eval_callback = EvalCallback(
             render=False,
         )
 
-model = CEM.load("data/save/best/Best_Model_Rocket_Lander_Plus", env=env)
+model = CEM.load("Best_Model_Rocket_Lander_Plus", env=env)
 
 """
 model = CEM(
