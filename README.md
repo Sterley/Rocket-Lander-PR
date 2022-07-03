@@ -1,14 +1,14 @@
-# Rocket-Lander-PR
-Rocket Lander est un environnement gym en python disponible sur github où l’objectif est de poser une fusée au sol à la façon des fusées Falcon de Space X. L’objectif du projet sera d’appliquer des méthodes d’apprentissage par renforcement profiond à l’environnement Rocket lander et de bien comprendre les performances obtenues.
+# Rocket-Lander-RP
+Rocket Lander is a gym environment in python available on github, to land a rocket like a Space X's Falcon rockets. The objective of the project will be to apply reinforcement learning methods to the Rocket lander environment and get a good understanding of the performance obtained.
 
 
-Références :
+References:
 
-L’environnement Rocket Lander :
+Rocket Lander Environment:
 https://github.com/sdsubhajitdas/Rocket_Lander_Gym
 
 Stable Baselines 3 :
 https://github.com/DLR-RM/stable-baselines3
 
-Outils d’analyse de l’apprentissage :
+Learning Analytics Tools:
 https://www.tensorflow.org/tensorboard/get_started
