@@ -1,0 +1,1 @@
+python3 train.py --algo ppo --env RocketLander-v0 -n 100000 -optimize --n-trials 20
